@@ -33,4 +33,9 @@ public class TodoMainTagMap {
 
     @Column(name = "created_dt", nullable = false)
     private LocalDateTime createdDt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdDt = LocalDateTime.now();
+    }
 }

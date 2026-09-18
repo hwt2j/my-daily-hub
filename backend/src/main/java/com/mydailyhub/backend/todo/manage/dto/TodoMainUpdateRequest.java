@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public record TodoMainUpdateRequest(
         @NotBlank @Size(max = 200) String tdName,
@@ -12,6 +13,7 @@ public record TodoMainUpdateRequest(
         Integer tdImportance,
         Integer tdSortSn,
         LocalDate tdDueDt,
-        @Valid TodoRoutineRequest routineSettings
+        @Valid TodoRoutineRequest routineSettings,
+        List<String> tagNames
 ) {
 }

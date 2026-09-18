@@ -4,6 +4,7 @@ import com.mydailyhub.backend.todo.manage.entity.TodoMain;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public record TodoMainResponse(
         Long tdSeq,
@@ -15,13 +16,15 @@ public record TodoMainResponse(
         boolean deleted,
         LocalDateTime createdDt,
         LocalDateTime updatedDt,
-        TodoRoutineResponse routineSettings
+        TodoRoutineResponse routineSettings,
+        List<TodoTagResponse> tags
 ) {
-    public static TodoMainResponse from(TodoMain todo, TodoRoutineResponse routineSettings) {
+    public static TodoMainResponse from(
+            TodoMain todo, TodoRoutineResponse routineSettings, List<TodoTagResponse> tags) {
         return new TodoMainResponse(
                 todo.getTdSeq(), todo.getTdName(), todo.isRoutine(),
                 todo.getTdImportance(), todo.getTdSortSn(), todo.getTdDueDt(),
-                todo.isDeleted(), todo.getCreatedDt(), todo.getUpdatedDt(), routineSettings
+                todo.isDeleted(), todo.getCreatedDt(), todo.getUpdatedDt(), routineSettings, tags
         );
     }
 }
