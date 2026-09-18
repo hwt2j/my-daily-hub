@@ -1,5 +1,6 @@
 package com.mydailyhub.backend.todo.manage.dto;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -10,6 +11,7 @@ public record TodoMainCreateRequest(
         boolean routine,
         Integer tdImportance,
         Integer tdSortSn,
-        LocalDate tdDueDt
+        LocalDate tdDueDt,
+        @Valid TodoRoutineRequest routineSettings
 ) {
 }

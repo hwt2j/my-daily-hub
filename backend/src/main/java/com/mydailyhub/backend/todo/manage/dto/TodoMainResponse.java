@@ -14,13 +14,14 @@ public record TodoMainResponse(
         LocalDate tdDueDt,
         boolean deleted,
         LocalDateTime createdDt,
-        LocalDateTime updatedDt
+        LocalDateTime updatedDt,
+        TodoRoutineResponse routineSettings
 ) {
-    public static TodoMainResponse from(TodoMain todo) {
+    public static TodoMainResponse from(TodoMain todo, TodoRoutineResponse routineSettings) {
         return new TodoMainResponse(
                 todo.getTdSeq(), todo.getTdName(), todo.isRoutine(),
                 todo.getTdImportance(), todo.getTdSortSn(), todo.getTdDueDt(),
-                todo.isDeleted(), todo.getCreatedDt(), todo.getUpdatedDt()
+                todo.isDeleted(), todo.getCreatedDt(), todo.getUpdatedDt(), routineSettings
         );
     }
 }
