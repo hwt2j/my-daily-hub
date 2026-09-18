@@ -1,5 +1,7 @@
 package com.mydailyhub.backend.common.code.service;
 
+import com.mydailyhub.backend.common.base.exception.BusinessException;
+import com.mydailyhub.backend.common.base.exception.ErrorCode;
 import com.mydailyhub.backend.common.code.dto.CommonCodeCreateRequest;
 import com.mydailyhub.backend.common.code.dto.CommonCodeResponse;
 import com.mydailyhub.backend.common.code.entity.CommonCode;
@@ -41,6 +43,10 @@ public class CommonCodeService {
     }
 
     public List<CommonCodeResponse> findAll(Long cdGrpSeq) {
+        commonCodeGroupRepository.findByCdGrpSeqAndDeletedFalse(cdGrpSeq)
+                .orElseThrow(() -> new BusinessException(
+                        ErrorCode.RESOURCE_NOT_FOUND, "공통코드 그룹을 찾을 수 없습니다."));
+
         return commonCodeRepository
                 .findAllByCodeGroup_CdGrpSeqAndCodeGroup_DeletedFalseAndUsedTrue(
                         cdGrpSeq, Sort.by("sortSn", "cdSeq"))
